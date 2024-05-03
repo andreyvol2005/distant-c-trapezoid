@@ -1,0 +1,145 @@
+#include <iostream>
+#include <clocale>
+#include <math.h>
+using namespace std;
+
+class Isosceles_trapezoid
+{
+private:
+    int* x_y1 = new int[2];
+    int* x_y2 = new int[2];
+    int* x_y3 = new int[2];
+    int* x_y4 = new int[2];
+public:
+    Isosceles_trapezoid(int x_y1_[], int x_y2_[], int x_y3_[], int x_y4_[])
+    {
+        x_y1 = x_y1_;
+        x_y2 = x_y2_;
+        x_y3 = x_y3_;
+        x_y4 = x_y4_;
+    }
+    void is_isosceles(int x_y1_[], int x_y2_[], int x_y3_[], int x_y4_[])
+    {
+        double side1 = sqrt(pow((x_y1[0] - x_y2[0]), 2) + pow((x_y1[1] - x_y2[1]), 2));
+        double side2 = sqrt(pow((x_y3[0] - x_y4[0]), 2) + pow((x_y3[1] - x_y4[1]), 2));
+        if (side1 == side2) cout << "трапеция равнобедренная" << endl;
+        else cout << "трапеция не равнобедренная" << endl;
+    }
+    void lenght_side1(int x_y1_[], int x_y2_[], int x_y3_[], int x_y4_[])
+    {
+        double side1 = sqrt(pow((x_y1[0] - x_y2[0]), 2) + pow((x_y1[1] - x_y2[1]), 2));
+        cout << "длина первой стороны " << side1 << endl;
+    }
+    void lenght_side2(int x_y1_[], int x_y2_[], int x_y3_[], int x_y4_[])
+    {
+        double side2 = sqrt(pow((x_y3[0] - x_y4[0]), 2) + pow((x_y3[1] - x_y4[1]), 2));
+        cout << "длина второй стороны " << side2 << endl;
+    }
+    void lenght_side3(int x_y1_[], int x_y2_[], int x_y3_[], int x_y4_[])
+    {
+        double side3 = sqrt(pow((x_y1[0] - x_y4[0]), 2) + pow((x_y1[1] - x_y4[1]), 2));
+        cout << "длина третей стороны " << side3 << endl;
+    }
+    void lenght_side4(int x_y1_[], int x_y2_[], int x_y3_[], int x_y4_[])
+    {
+        double side4 = sqrt(pow((x_y3[0] - x_y2[0]), 2) + pow((x_y3[1] - x_y2[1]), 2));
+        cout << "длина четвёртой стороны " << side4 << endl;
+    }
+    void perimeter(int x_y1_[], int x_y2_[], int x_y3_[], int x_y4_[])
+    {
+        double side1 = sqrt(pow((x_y1[0] - x_y2[0]), 2) + pow((x_y1[1] - x_y2[1]), 2));
+        double side2 = sqrt(pow((x_y3[0] - x_y4[0]), 2) + pow((x_y3[1] - x_y4[1]), 2));
+        double side3 = sqrt(pow((x_y1[0] - x_y4[0]), 2) + pow((x_y1[1] - x_y4[1]), 2));
+        double side4 = sqrt(pow((x_y3[0] - x_y2[0]), 2) + pow((x_y3[1] - x_y2[1]), 2));
+        cout << "периметр трапеции: " << side1 + side2 + side3 + side4 << endl;
+    }
+    double square(int x_y1_[], int x_y2_[], int x_y3_[], int x_y4_[])
+    {
+        double side1 = sqrt(pow((x_y1[0] - x_y2[0]), 2) + pow((x_y1[1] - x_y2[1]), 2));
+        double side2 = sqrt(pow((x_y1[0] - x_y4[0]), 2) + pow((x_y1[1] - x_y4[1]), 2));
+        double side3 = sqrt(pow((x_y3[0] - x_y2[0]), 2) + pow((x_y3[1] - x_y2[1]), 2));
+        double a = acos(((x_y1[0] - x_y2[0]) * (x_y1[0] - x_y4[0]) + (x_y1[1] - x_y2[1]) * (x_y1[1] - x_y4[1])) / (side1 * side2)) * 180 / 3.1415;
+        double h = sin(a * 3.1415 / 180.0) * side1;
+        double s = (side2 + side3) / 2.0 * h;
+        //cout << "площадь трапеции " << s << endl;
+        return s;
+    }
+};
+
+int main()
+{
+    setlocale(LC_CTYPE, "Rus");
+    int* x_y1 = new int[2] {-2, 0};
+    int* x_y2 = new int[2] {-1, 1};
+    int* x_y3 = new int[2] {1, 1};
+    int* x_y4 = new int[2] {2, 0};
+    Isosceles_trapezoid trapezoid(x_y1, x_y2, x_y3, x_y4);
+    trapezoid.is_isosceles(x_y1, x_y2, x_y3, x_y4);
+    trapezoid.lenght_side1(x_y1, x_y2, x_y3, x_y4);
+    trapezoid.lenght_side2(x_y1, x_y2, x_y3, x_y4);
+    trapezoid.lenght_side3(x_y1, x_y2, x_y3, x_y4);
+    trapezoid.lenght_side4(x_y1, x_y2, x_y3, x_y4);
+    trapezoid.perimeter(x_y1, x_y2, x_y3, x_y4);
+    cout << "площадь трапеции " << trapezoid.square(x_y1, x_y2, x_y3, x_y4);
+
+    //дано 4 трапеции
+    Isosceles_trapezoid trapezoid1(
+        new int[2] {-4, 0},
+        new int[2] {-1, 1},
+        new int[2] {0, 1},
+        new int[2] {1, 0}
+    );
+    Isosceles_trapezoid trapezoid2(
+        new int[2] {-1, 0},
+        new int[2] {0, 1},
+        new int[2] {1, 1},
+        new int[2] {2, 0}
+    );
+    Isosceles_trapezoid trapezoid3(
+        new int[2] {-2, 0},
+        new int[2] {-1, 1},
+        new int[2] {0, 1},
+        new int[2] {2, 0}
+    );
+    Isosceles_trapezoid trapezoid4(
+        new int[2] {-4, 0},
+        new int[2] {-1, 1},
+        new int[2] {0, 1},
+        new int[2] {1, 0}
+    );
+    double S1 = trapezoid1.square(
+        new int[2] {-4, 0},
+        new int[2] {-1, 1},
+        new int[2] {0, 1},
+        new int[2] {1, 0}
+    );
+    double S2 = trapezoid2.square(
+        new int[2] {-1, 0},
+        new int[2] {0, 1},
+        new int[2] {1, 1},
+        new int[2] {2, 0}
+    );
+    double S3 = trapezoid3.square(
+        new int[2] {-2, 0},
+        new int[2] {-1, 1},
+        new int[2] {0, 1},
+        new int[2] {2, 0}
+    );
+    double S4 = trapezoid4.square(
+        new int[2] {-4, 0},
+        new int[2] {-1, 1},
+        new int[2] {0, 1},
+        new int[2] {1, 0}
+    );
+    double* squares = new double[4] {S1, S2, S3, S4};
+    double arithmetic_mean = (S1 + S2 + S3 + S4)/4.0;
+    int count = 0;
+    for (int i = 0; i <= 3; i++)
+    {
+        if (squares[i] > arithmetic_mean)
+        {
+            count++;
+        }
+    }
+    cout << "количество трапеций c полщадью больше средней: " << count << endl;
+}
